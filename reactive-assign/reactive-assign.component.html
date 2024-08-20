@@ -1,0 +1,122 @@
+<!-- <p>reactive-assign works!</p> -->
+<div class="container">
+    <div class="row mt-md-5 m-0" >
+      <div class="col m-5">
+            <div class="card border-0" style="width:250px">
+              <img class="card-img-top rounded-circle" src="assets/profile.png" alt="Card image">
+              <div class="card-body">
+                <h4 class="card-title d-flex justify-content-center">Neha Patil</h4>
+                <p class="card-text d-flex justify-content-center">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quos vero velit sequi esse, ut consectetur distinctio, eligendi voluptate a omnis consequuntur quaerat rem autem quidem eaque quisquam optio magnam excepturi?
+
+                </p>
+                
+              </div>
+            </div>
+          
+      </div>
+      <div class="col mt-5">
+        <h3>User Details</h3>
+        <form class="example-form" [formGroup]="myReactiveForm">
+            <mat-form-field class="example-full-width">
+              <mat-label>Name</mat-label>
+              <input matInput type="text" 
+                     placeholder="Ex. pat@example.com" formControlName="firstName" [required]="true">
+
+                     <mat-error *ngIf="myReactiveForm.get('firstName')?.errors?.['required']" >The First Name is mandatory.</mat-error>
+                     <mat-error *ngIf="myReactiveForm.get('firstName')?.errors?.['minlength']">
+                      The field must have at least 5 characters</mat-error>
+                     <mat-error *ngIf="myReactiveForm.get('firstName')?.errors?.['maxlength']">
+                      The field must have no more than 25 characters.</mat-error>
+                      <mat-error *ngIf="myReactiveForm.get('firstName')?.errors?.['pattern']">
+                        The field must contain both letters and numbers</mat-error>
+                        <mat-error *ngIf="myReactiveForm.get('firstName')?.errors?.['nameNotUnique']">
+                          This name is already taken. Please choose another.</mat-error>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+              <mat-label>Choose a date</mat-label>
+              <input matInput [matDatepicker]="picker" placeholder="MM/DD/YYYY" formControlName="date" [required]="true">
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+              <mat-error *ngIf="myReactiveForm.get('date')?.errors?.['required']" >choose the date.</mat-error>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+              <mat-label>Select a gender</mat-label>
+              <mat-select formControlName="gender" [required]="true">
+                <mat-option [value]="null">None</mat-option>
+                <mat-option *ngFor="let gender of genders" [value]="gender">{{gender}}</mat-option>
+              </mat-select>
+              <mat-error *ngIf="myReactiveForm.get('gender')?.errors?.['required']">Please select a gender.</mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width">
+              <mat-label>Bio</mat-label>
+              <textarea matInput formControlName="bio" placeholder="Enter your bio here"></textarea>
+              <mat-hint class="hint-container">
+              Tell me about yourself
+              <span class="char-count">{{ 256 - (myReactiveForm.get('bio')?.value.length || 0) }}/256</span>
+            
+              </mat-hint>
+              <mat-error *ngIf="myReactiveForm.get('bio')?.errors?.['maxlength']">
+                Bio cannot exceed 256 characters.
+              </mat-error>
+            </mat-form-field>
+            
+          </form>
+      
+              
+      </div>
+      <div class="col mt-5">
+        <h3>Account Details</h3>
+        <form class="example-form" [formGroup]="myReactiveForm">
+          <mat-form-field class="example-full-width">
+            <mat-label>User Name</mat-label>
+            <input matInput type="text" 
+                   placeholder="Ex. pat@example.com" formControlName="userName" [required]="true">
+
+                   <mat-error *ngIf="myReactiveForm.get('userName')?.errors?.['required']" >The First Name is mandatory.</mat-error>
+                   <mat-error *ngIf="myReactiveForm.get('userName')?.errors?.['minlength']">
+                    The field must have at least 5 characters</mat-error>
+                   <mat-error *ngIf="myReactiveForm.get('userName')?.errors?.['maxlength']">
+                    The field must have no more than 25 characters.</mat-error>
+                    <mat-error *ngIf="myReactiveForm.get('userName')?.errors?.['pattern']">
+                      The field must contain both letters and numbers</mat-error>
+          </mat-form-field>
+          <mat-form-field class="example-full-width">
+            <mat-label>Password</mat-label>
+            <input matInput type="password" formControlName="password" placeholder="Enter your password">
+            <mat-error *ngIf="myReactiveForm.get('password')?.errors?.['required']">
+              Password is required.
+            </mat-error>
+            <mat-error *ngIf="myReactiveForm.get('password')?.errors?.['minlength']">
+              Password must be at least 5 characters long.
+            </mat-error>
+            <mat-error *ngIf="myReactiveForm.get('password')?.errors?.['pattern']">
+              Password must contain at least one uppercase letter, one lowercase letter, and one number.
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="example-full-width">
+            <mat-label>Confirm Password</mat-label>
+            <input matInput type="password" formControlName="confirmPassword" placeholder="Re-enter your password">
+            <mat-error *ngIf="myReactiveForm.get('confirmPassword')?.errors?.['required']">
+              Confirm Password is required.
+            </mat-error>
+            <mat-error *ngIf="myReactiveForm.errors?.['mismatch']">
+              Passwords do not match.
+            </mat-error>
+          </mat-form-field>
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
